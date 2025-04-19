@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS Tipo_Produto (
 CREATE TABLE IF NOT EXISTS Produto (
     id INTEGER NOT NULL PRIMARY KEY,
     nome TEXT NOT NULL,
-    descricao TEXT NOT NULL,
-    familia TEXT NOT NULL,
+    descricao TEXT,
+    familia TEXT,
     tipo_id INT NOT NULL,
     lote TEXT,
     altura REAL,
