@@ -1,3 +1,7 @@
 package sistematransportadora.modelo;
 
-public record ProdutoTipo(int id, String nome) {}
+public record ProdutoTipo(
+        int id,
+        String nome,
+        boolean isPadrao
+) {}
