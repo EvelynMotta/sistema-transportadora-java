@@ -18,6 +18,7 @@ public interface Repositorio<T> {
     T[] buscarTodos();
     HashMap<String, Integer> contarPorTipo();
     int contarTodos();
+    boolean existeId(int id);
 
     // Update
     void atualizarUm(T obj);

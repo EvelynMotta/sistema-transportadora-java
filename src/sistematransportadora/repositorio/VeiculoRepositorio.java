@@ -157,6 +157,29 @@ public class VeiculoRepositorio implements Repositorio<Veiculo> {
     }
 
     /**
+     * Verifica se a id de veículo dada existe ou não na base de dados.
+     * @param id Id do veículo.
+     * @return {@code boolean} que diz se existe ou não na tabela.
+     */
+    @Override
+    public boolean existeId(int id) {
+        var sql = "SELECT EXISTS(SELECT 1 FROM Veiculo WHERE id = ?) as existe";
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            var rs = stmt.executeQuery();
+            return rs.getBoolean("existe");
+        } catch (SQLException e) {
+            String err = "Erro ao verificar se existe id em veículos: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
+
+    /**
      * Atualiza um veículo com base na id. Por isso, um veículo com id inexistente no banco
      * de dados não surtirá efeito algum caso enviado como parâmetro.
      * @param obj Veículo com atributos atualizados.
