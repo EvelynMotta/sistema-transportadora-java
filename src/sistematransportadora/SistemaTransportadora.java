@@ -47,7 +47,7 @@ public class SistemaTransportadora {
                 sql.append(linha).append("\n");
             }
 
-            stmt.execute(sql.toString());
+            stmt.executeLargeUpdate(sql.toString());
         } catch (IOException | SQLException e) {
             System.out.println("Erro ao executar script SQL de criação: " + e.getMessage());
         }
