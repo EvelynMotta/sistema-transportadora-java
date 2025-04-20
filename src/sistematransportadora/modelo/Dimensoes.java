@@ -10,4 +10,8 @@ public class Dimensoes {
         this.largura = largura;
         this.comprimento = comprimento;
     }
+
+    public boolean isValida() {
+        return !(this.altura < 0 || this.largura < 0 || this.comprimento < 0);
+    }
 }
