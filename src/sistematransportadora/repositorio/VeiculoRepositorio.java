@@ -69,6 +69,36 @@ public class VeiculoRepositorio implements Repositorio<Veiculo> {
     }
 
     /**
+     * Busca por um veículo na base de dados com placa correspondente e o retorna.
+     * Se não houver, retorna {@code null}.
+     * @param placa Placa do veículo.
+     * @return {@link Veiculo} | {@code null}
+     */
+    public Veiculo buscarPorPlaca(String placa) {
+        String sql = """
+            SELECT v.*, tv.nome as tipo, tv.padrao as tipo_padrao FROM Veiculo v
+            JOIN Tipo_Veiculo tv ON tv.id = v.tipo_id
+            WHERE v.placa = ?
+            """;
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            stmt.setString(1, placa);
+
+            var rs = stmt.executeQuery();
+            if (!rs.next())
+                return null;
+
+            return resultParaVeiculo(rs);
+        } catch (SQLException e) {
+            String err = "Erro ao buscar veículo por placa: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
+
+    /**
      * Busca por todos os veículos na base de dados e os retorna.
      * @return Um array de veículos - {@code Veiculo[]}
      */
