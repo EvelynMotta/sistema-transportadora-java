@@ -1,0 +1,11 @@
+# Netbeans
+/build/
+/nbproject/.idea/
+/nbproject/private/
+
+# IntelliJ
+/out/
+/.idea/
+
+# Libs
+/lib/
