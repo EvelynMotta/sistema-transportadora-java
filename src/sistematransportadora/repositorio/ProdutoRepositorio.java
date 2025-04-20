@@ -359,7 +359,7 @@ public class ProdutoRepositorio implements Repositorio<Produto> {
                 rs.getBoolean("tipo_padrao")
         );
 
-        Fragilidade fragilidade = switch (rs.getString("fragilidade")) {
+        Fragilidade fragilidade = switch (rs.getString("grau_fragilidade")) {
             case "alta" -> Fragilidade.ALTA;
             case "média" -> Fragilidade.MEDIA;
             default -> Fragilidade.BAIXA;
