@@ -16,8 +16,8 @@
 </p>
 <hr>
 
-[!NOTE]
-📚 Projeto com fins puramente educativos!
+> [!NOTE]
+> 📚 Projeto com fins puramente educativos!
 
 ## Recursos
 O que esse projeto oferece é uma forma de cadastrar e obter resumos sobre entidades que existem em
