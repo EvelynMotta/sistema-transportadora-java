@@ -3,6 +3,7 @@ package sistematransportadora;
 import java.io.*;
 import java.sql.SQLException;
 import java.sql.Statement;
+import sistematransportadora.ui.TelaPrincipal;
 
 /**
  *
@@ -12,6 +13,7 @@ public class SistemaTransportadora {
 
     public static void main(String[] args) {
         prepararBanco();
+        TelaPrincipal.main(null);
     }
 
     private static void prepararBanco() {
