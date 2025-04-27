@@ -158,6 +158,50 @@ public class ProdutoRepositorio implements Repositorio<Produto> {
     }
 
     /**
+     * Conta a quantidade de famílias cadastradas no banco.
+     * @return {@code int}
+     */
+    public int contarFamiliasCadastradas() {
+        var sql = """
+            SELECT COUNT(DISTINCT p.familia) as quantidade FROM Produto p
+            """;
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            var rs = stmt.executeQuery();
+
+            return rs.getInt("quantidade");
+        } catch (SQLException e) {
+            String err = "Erro ao contar famílias cadastradas: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
+
+    /**
+     * Conta a quantidade de lotes cadastrados no banco.
+     * @return {@code int}
+     */
+    public int contarLotesCadastrados() {
+        var sql = """
+            SELECT COUNT(DISTINCT lote) as quantidade FROM Produto
+            """;
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            var rs = stmt.executeQuery();
+
+            return rs.getInt("quantidade");
+        } catch (SQLException e) {
+            String err = "Erro ao contar lotes cadastrados: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
+
+    /**
      * Verifica se a id de produto dada existe ou não na base de dados.
      * @param id Id do produto.
      * @return {@code boolean} que diz se existe ou não na tabela.
