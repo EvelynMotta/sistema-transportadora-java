@@ -32,6 +32,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuVeiculo = new javax.swing.JMenuItem();
         mnuProduto = new javax.swing.JMenuItem();
         mnuEmbalagem = new javax.swing.JMenuItem();
+        mnExibir = new javax.swing.JMenu();
+        mnResumo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JavaLog");
@@ -75,6 +77,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        mnExibir.setText("Exibir");
+
+        mnResumo.setText("Resumo");
+        mnResumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnResumoActionPerformed(evt);
+            }
+        });
+        mnExibir.add(mnResumo);
+
+        jMenuBar1.add(mnExibir);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,6 +105,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnuEmbalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmbalagemActionPerformed
+        var cadastrarEmbalagem  = new CadastrarEmbalagem();
+        dpTelinha.add(cadastrarEmbalagem);
+        cadastrarEmbalagem.setVisible(true);
+        cadastrarEmbalagem.setClosable(true);
+    }//GEN-LAST:event_mnuEmbalagemActionPerformed
+
+    private void mnuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProdutoActionPerformed
+        var cadastrarProduto  = new CadastrarProduto();
+        dpTelinha.add(cadastrarProduto);
+        cadastrarProduto.setVisible(true);
+        cadastrarProduto.setClosable(true);
+    }//GEN-LAST:event_mnuProdutoActionPerformed
+
     private void mnuVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVeiculoActionPerformed
         var cadastrarVeiculo  = new CadastrarVeiculo();
         dpTelinha.add(cadastrarVeiculo);
@@ -98,19 +126,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadastrarVeiculo.setClosable(true);
     }//GEN-LAST:event_mnuVeiculoActionPerformed
 
-    private void mnuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProdutoActionPerformed
-       var cadastrarProduto  = new CadastrarProduto();
-        dpTelinha.add(cadastrarProduto);
-        cadastrarProduto.setVisible(true);
-        cadastrarProduto.setClosable(true);
-    }//GEN-LAST:event_mnuProdutoActionPerformed
-
-    private void mnuEmbalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmbalagemActionPerformed
-        var cadastrarEmbalagem  = new CadastrarEmbalagem();
-        dpTelinha.add(cadastrarEmbalagem);
-        cadastrarEmbalagem.setVisible(true);
-        cadastrarEmbalagem.setClosable(true);
-    }//GEN-LAST:event_mnuEmbalagemActionPerformed
+    private void mnResumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnResumoActionPerformed
+         var telaResumo  = new TelaResumo();
+        dpTelinha.add(telaResumo);
+        telaResumo.setVisible(true);
+        telaResumo.setClosable(true);
+    }//GEN-LAST:event_mnResumoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +173,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane dpTelinha;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mnExibir;
+    private javax.swing.JMenuItem mnResumo;
     private javax.swing.JMenuItem mnuEmbalagem;
     private javax.swing.JMenuItem mnuProduto;
     private javax.swing.JMenuItem mnuVeiculo;
