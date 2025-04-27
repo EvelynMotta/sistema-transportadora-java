@@ -245,6 +245,7 @@ public class CadastrarVeiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
     
     private void limpar(){
+        txtID.setText("");
         txtNome.setText("");
         txtPlaca.setText("");
         txtModelo.setText("");
