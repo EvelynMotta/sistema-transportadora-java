@@ -63,7 +63,6 @@ public class CadastrarEmbalagem extends javax.swing.JInternalFrame {
         var produtosNomes = new ArrayList<String>();
         
         for(var produto : produtos){
-            System.out.println(produto.getNome());
             produtosNomes.add(produto.getNome());
         }
         caixaVazia = produtosNomes.isEmpty();
