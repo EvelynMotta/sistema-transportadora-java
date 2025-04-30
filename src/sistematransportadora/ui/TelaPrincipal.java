@@ -34,6 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuEmbalagem = new javax.swing.JMenuItem();
         mnExibir = new javax.swing.JMenu();
         mnuVVeiculo = new javax.swing.JMenuItem();
+        mnVProduto = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnResumo = new javax.swing.JMenuItem();
 
@@ -88,6 +89,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnExibir.add(mnuVVeiculo);
+
+        mnVProduto.setText("Visualizar Produtos");
+        mnVProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVProdutoActionPerformed(evt);
+            }
+        });
+        mnExibir.add(mnVProduto);
         mnExibir.add(jSeparator1);
 
         mnResumo.setText("Resumo");
@@ -151,6 +160,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         visualizacaoVeiculo.setClosable(true);
     }//GEN-LAST:event_mnuVVeiculoActionPerformed
 
+    private void mnVProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVProdutoActionPerformed
+       var visualizacaoProduto  = new VisualizacaoProduto();
+        dpTelinha.add(visualizacaoProduto);
+        visualizacaoProduto.setVisible(true);
+        visualizacaoProduto.setClosable(true);
+    }//GEN-LAST:event_mnVProdutoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,6 +210,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu mnExibir;
     private javax.swing.JMenuItem mnResumo;
+    private javax.swing.JMenuItem mnVProduto;
     private javax.swing.JMenuItem mnuEmbalagem;
     private javax.swing.JMenuItem mnuProduto;
     private javax.swing.JMenuItem mnuVVeiculo;
