@@ -33,6 +33,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuProduto = new javax.swing.JMenuItem();
         mnuEmbalagem = new javax.swing.JMenuItem();
         mnExibir = new javax.swing.JMenu();
+        mnuVVeiculo = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnResumo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,6 +80,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         mnExibir.setText("Exibir");
+
+        mnuVVeiculo.setText("Visualizar Veículos");
+        mnuVVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuVVeiculoActionPerformed(evt);
+            }
+        });
+        mnExibir.add(mnuVVeiculo);
+        mnExibir.add(jSeparator1);
 
         mnResumo.setText("Resumo");
         mnResumo.addActionListener(new java.awt.event.ActionListener() {
@@ -127,11 +138,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuVeiculoActionPerformed
 
     private void mnResumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnResumoActionPerformed
-         var telaResumo  = new TelaResumo();
+        var telaResumo  = new TelaResumo();
         dpTelinha.add(telaResumo);
         telaResumo.setVisible(true);
         telaResumo.setClosable(true);
     }//GEN-LAST:event_mnResumoActionPerformed
+
+    private void mnuVVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVVeiculoActionPerformed
+        var visualizacaoVeiculo  = new VisualizacaoVeiculo();
+        dpTelinha.add(visualizacaoVeiculo);
+        visualizacaoVeiculo.setVisible(true);
+        visualizacaoVeiculo.setClosable(true);
+    }//GEN-LAST:event_mnuVVeiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,10 +191,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane dpTelinha;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu mnExibir;
     private javax.swing.JMenuItem mnResumo;
     private javax.swing.JMenuItem mnuEmbalagem;
     private javax.swing.JMenuItem mnuProduto;
+    private javax.swing.JMenuItem mnuVVeiculo;
     private javax.swing.JMenuItem mnuVeiculo;
     // End of variables declaration//GEN-END:variables
 }
