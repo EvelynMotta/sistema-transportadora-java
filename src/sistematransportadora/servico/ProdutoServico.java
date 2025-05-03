@@ -1,6 +1,7 @@
 package sistematransportadora.servico;
 
 import sistematransportadora.modelo.Produto;
+import sistematransportadora.modelo.ProdutoTipo;
 import sistematransportadora.repositorio.ProdutoRepositorio;
 
 /**
@@ -9,8 +10,6 @@ import sistematransportadora.repositorio.ProdutoRepositorio;
  */
 public class ProdutoServico {
     private final ProdutoRepositorio produtoRepositorio;
-
-    // TODO: Implementar métodos para os tipos.
 
     public ProdutoServico() {
         this.produtoRepositorio = new ProdutoRepositorio();
@@ -79,6 +78,63 @@ public class ProdutoServico {
             throw new IdNaoExisteException(String.format("Não há produto com id %d.", id));
         }
         produtoRepositorio.apagarPorId(id);
+    }
+    
+    /**
+     * Busca por uma id válida de tipo de produto, ou seja, que não esteja em uso
+     * no banco de dados.
+     * @return {@code int}
+     */
+    public int buscarIdValidaParaTipo() {
+        var tiposCadastrados = produtoRepositorio.contarPorTipo().size();
+        int i = tiposCadastrados;
+        
+        while (true) {
+            if (!produtoRepositorio.existeTipoId(i))
+                break;
+            i++;
+        }
+        
+        return i;
+    }
+    
+    /**
+     * Cadastra um novo tipo de produto na base de dados.
+     * @param tipoProduto O novo tipo a ser cadastrado.
+     * @throws IdJaExisteException Se a id do tipo já estiver cadastrada.
+     * @throws ValorInvalidoException Se o nome for muito curto ou vazio.
+     */
+    public void cadastrarTipo(ProdutoTipo tipoProduto) {
+        if (produtoRepositorio.existeTipoId(tipoProduto.id())) {
+            throw new IdJaExisteException("Id de tipo de produto já existe no banco de dados.");
+        }
+        
+        if (tipoProduto.nome().isBlank() || tipoProduto.nome().trim().length() < 3) {
+            throw new ValorInvalidoException("Nome inválido! O nome precisa ter no mínimo 3 caracteres");
+        }
+        
+        // Impossibilita a criação de um tipo "padrão", porém não deixa de o criar.
+        if (tipoProduto.isPadrao()) {
+            var novoTipo = new ProdutoTipo(tipoProduto.id(), tipoProduto.nome(), false);
+            produtoRepositorio.criarNovoTipo(novoTipo);
+            
+            return;
+        }
+        
+        produtoRepositorio.criarNovoTipo(tipoProduto);
+    }
+    
+    /**
+     * Apaga o tipo com base na id.
+     * @param id A id do tipo.
+     * @throws IdNaoExisteException Se a id do tipo não existir no banco.
+     */
+    public void apagarTipoPorId(int id) {
+        if (!produtoRepositorio.existeTipoId(id)) {
+            throw new IdNaoExisteException("Id de tipo de produto não existe no banco de dados.");
+        }
+        
+        produtoRepositorio.apagarTipo(id);
     }
 
     private void checarValidezCadastro(Produto p, boolean updateMode) throws IdJaExisteException, ValorInvalidoException {

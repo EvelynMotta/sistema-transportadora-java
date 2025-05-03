@@ -307,6 +307,28 @@ public class EmbalagemRepositorio implements Repositorio<Embalagem> {
             throw new RuntimeException(err);
         }
     }
+    
+    /**
+     * Verifica se a id to tipo de embalagem dada existe ou não na base de dados.
+     * @param id Id do tipo de embalagem.
+     * @return {@code boolean} que diz se existe ou não na tabela.
+     */
+    public boolean existeTipoId(int id) {
+        var sql = "SELECT EXISTS(SELECT 1 FROM Tipo_Embalagem WHERE id = ?) as existe";
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            var rs = stmt.executeQuery();
+            return rs.getBoolean("existe");
+        } catch (SQLException e) {
+            String err = "Erro ao verificar se existe id em tipos de embalagem: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
 
     /**
      * Atualiza um tipo de embalagem na base de dados por meio da id.

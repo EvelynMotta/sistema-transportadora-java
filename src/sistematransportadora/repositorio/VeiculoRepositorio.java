@@ -126,6 +126,28 @@ public class VeiculoRepositorio implements Repositorio<Veiculo> {
             throw new RuntimeException(err);
         }
     }
+    
+    /**
+     * Verifica se a id to tipo de veículo dada existe ou não na base de dados.
+     * @param id Id do tipo de veículo.
+     * @return {@code boolean} que diz se existe ou não na tabela.
+     */
+    public boolean existeTipoId(int id) {
+        var sql = "SELECT EXISTS(SELECT 1 FROM Tipo_Veiculo WHERE id = ?) as existe";
+
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            var rs = stmt.executeQuery();
+            return rs.getBoolean("existe");
+        } catch (SQLException e) {
+            String err = "Erro ao verificar se existe id em tipos de veículo: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
 
     /**
      * Conta a quantidade de veículos por tipo cadastrado.

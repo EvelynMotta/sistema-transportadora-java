@@ -1,6 +1,7 @@
 package sistematransportadora.servico;
 
 import sistematransportadora.modelo.Veiculo;
+import sistematransportadora.modelo.VeiculoTipo;
 import sistematransportadora.repositorio.VeiculoRepositorio;
 
 /**
@@ -9,8 +10,6 @@ import sistematransportadora.repositorio.VeiculoRepositorio;
  */
 public class VeiculoServico {
     private final VeiculoRepositorio veiculoRepositorio;
-
-    // TODO: Implementar métodos para os tipos.
 
     public VeiculoServico() {
         this.veiculoRepositorio = new VeiculoRepositorio();
@@ -80,7 +79,65 @@ public class VeiculoServico {
         }
         veiculoRepositorio.apagarPorId(id);
     }
+    
+    /**
+     * Busca por uma id válida de tipo de veículo, ou seja, que não esteja em uso
+     * no banco de dados.
+     * @return {@code int}
+     */
+    public int buscarIdValidaParaTipo() {
+        var tiposCadastrados = veiculoRepositorio.contarPorTipo().size();
+        int i = tiposCadastrados;
+        
+        while (true) {
+            if (!veiculoRepositorio.existeTipoId(i))
+                break;
+            i++;
+        }
+        
+        return i;
+    }
 
+    /**
+     * Cadastra um novo tipo de veículo na base de dados.
+     * @param tipoVeiculo O novo tipo a ser cadastrado.
+     * @throws IdJaExisteException Se a id do tipo já estiver cadastrada.
+     * @throws ValorInvalidoException Se o nome for muito curto ou vazio.
+     */
+    public void cadastrarTipo(VeiculoTipo tipoVeiculo) {
+
+        if (veiculoRepositorio.existeTipoId(tipoVeiculo.id())) {
+            throw new IdJaExisteException("Id de tipo de veículo já existe no banco de dados.");
+        }
+        
+        if (tipoVeiculo.nome().isBlank() || tipoVeiculo.nome().trim().length() < 3) {
+            throw new ValorInvalidoException("Nome inválido! O nome precisa ter no mínimo 3 caracteres");
+        }
+        
+        // Impossibilita a criação de um tipo "padrão", porém não deixa de o criar.
+        if (tipoVeiculo.isPadrao()) {
+            var novoTipo = new VeiculoTipo(tipoVeiculo.id(), tipoVeiculo.nome(), false);
+            veiculoRepositorio.criarNovoTipo(novoTipo);
+            
+            return;
+        }
+        
+        veiculoRepositorio.criarNovoTipo(tipoVeiculo);
+    }
+    
+    /**
+     * Apaga o tipo com base na id.
+     * @param id A id do tipo.
+     * @throws IdNaoExisteException Se a id do tipo não existir no banco.
+     */
+    public void apagarTipoPorId(int id) {
+        if (!veiculoRepositorio.existeTipoId(id)) {
+            throw new IdNaoExisteException("Id de tipo de veículo não existe no banco de dados.");
+        }
+        
+        veiculoRepositorio.apagarTipo(id);
+    }
+    
     private void checarValidezCadastro(Veiculo v, boolean updateMode) throws IdJaExisteException, ValorInvalidoException {
         if (veiculoRepositorio.existeId(v.getId()) && !updateMode) {
             throw new IdJaExisteException("Id de veículo já existe no banco de dados.");
