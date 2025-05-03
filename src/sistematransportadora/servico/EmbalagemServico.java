@@ -132,10 +132,15 @@ public class EmbalagemServico {
      * Apaga o tipo com base na id.
      * @param id A id do tipo.
      * @throws IdNaoExisteException Se a id do tipo não existir no banco.
+     * @throws ValorInvalidoException Se o tipo for padrão da aplicação.
      */
     public void apagarTipoPorId(int id) {
         if (!embalagemRepositorio.existeTipoId(id)) {
             throw new IdNaoExisteException("Id de tipo de embalagem não existe no banco de dados.");
+        }
+        
+        if (embalagemRepositorio.buscarTipoPorId(id).isPadrao()) {
+            throw new ValorInvalidoException("Um tipo padrão não deve ser apagado!");
         }
         
         embalagemRepositorio.apagarTipo(id);
