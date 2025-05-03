@@ -14,6 +14,9 @@ public class ConexaoBanco {
 
         dataSource.setJdbcUrl(String.format("jdbc:sqlite:%s", arquivoDb.getPath()));
         dataSource.setMaximumPoolSize(10);
+        
+        // Ativando as verificações de foreign keys do sqlite
+        dataSource.setConnectionInitSql("PRAGMA foreign_keys = ON");
     }
 
     public static Connection pegarConnection() throws SQLException {

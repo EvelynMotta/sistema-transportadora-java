@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Veiculo (
     comprimento_interno REAL,
     capacidade_peso REAL,
     observacoes TEXT,
-    FOREIGN KEY (tipo_id) REFERENCES Tipo_Veiculo(id)
+    FOREIGN KEY (tipo_id) REFERENCES Tipo_Veiculo(id) ON DELETE CASCADE
 );
 
 INSERT INTO Tipo_Veiculo (nome, padrao) VALUES
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Produto (
     peso REAL,
     grau_fragilidade TEXT NOT NULL CHECK (grau_fragilidade in ('alta', 'média', 'baixa')),
     observacoes TEXT,
-    FOREIGN KEY (tipo_id) REFERENCES Tipo_Produto(id)
+    FOREIGN KEY (tipo_id) REFERENCES Tipo_Produto(id) ON DELETE CASCADE
 );
 
 INSERT INTO Tipo_Produto (nome, padrao) VALUES
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS Embalagem (
     observacoes TEXT,
     tipo_id INT NOT NULL,
     produto_id INT NOT NULL,
-    FOREIGN KEY (tipo_id) REFERENCES Tipo_Embalagem(id),
-    FOREIGN KEY (produto_id) REFERENCES Produto(id)
+    FOREIGN KEY (tipo_id) REFERENCES Tipo_Embalagem(id) ON DELETE CASCADE,
+    FOREIGN KEY (produto_id) REFERENCES Produto(id) ON DELETE CASCADE
 );
 
 INSERT INTO Tipo_Embalagem (nome, padrao) VALUES

@@ -85,6 +85,18 @@ public class VisualizacaoProduto extends javax.swing.JInternalFrame {
             return;
         }
         
+        var respostaDialog = JOptionPane.showConfirmDialog(
+            null, 
+            """
+            Ao apagar o produto, você também apagará as embalagens relacionadas a ele.
+            Você deseja continuar?
+            """,
+            "Atenção!",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (respostaDialog != JOptionPane.YES_OPTION)
+            return;
+        
         try {
             var id = (int)tProdutos.getValueAt(linha, 0); 
             modeloTabela.removeRow(linha);
