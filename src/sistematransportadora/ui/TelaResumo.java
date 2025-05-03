@@ -28,7 +28,7 @@ public class TelaResumo extends javax.swing.JInternalFrame {
     private void resumoProdutos(){
         var produtoRepositorio = new ProdutoRepositorio();
         var porTipo = produtoRepositorio.contarPorTipo();
-        var quantidadeTipos = porTipo.size();
+        var quantidadeTipos = porTipo != null ? porTipo.size() : 0;
         var total = produtoRepositorio.contarTodos();
         var familiasProduto = produtoRepositorio.contarFamiliasCadastradas();
         var quantidadeLotes = produtoRepositorio.contarLotesCadastrados();
@@ -36,10 +36,12 @@ public class TelaResumo extends javax.swing.JInternalFrame {
         StringBuilder sb = new StringBuilder();
         sb.append("Quantidade de Produtos: \n");
         
-        for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
-            String chave = entrada.getKey();
-            Integer valor = entrada.getValue();
-            sb.append(String.format("%s = %d \n", chave, valor));
+        if (porTipo != null) {
+            for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
+                String chave = entrada.getKey();
+                Integer valor = entrada.getValue();
+                sb.append(String.format("%s = %d \n", chave, valor));
+            }
         }
         sb.append(String.format("Total = %d \n\n", total));
         sb.append(String.format("Quantidade de Tipos:\n%d \n\n", quantidadeTipos));
@@ -56,10 +58,12 @@ public class TelaResumo extends javax.swing.JInternalFrame {
         StringBuilder sb = new StringBuilder();
         sb.append("Quantidade de Embalagens: \n");
         
-        for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
-            String chave = entrada.getKey();
-            Integer valor = entrada.getValue();
-            sb.append(String.format("%s = %d \n", chave, valor));
+        if (porTipo != null) {
+            for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
+                String chave = entrada.getKey();
+                Integer valor = entrada.getValue();
+                sb.append(String.format("%s = %d \n", chave, valor));
+            }
         }
         
         sb.append(String.format("Total = %d ", total));
@@ -73,10 +77,12 @@ public class TelaResumo extends javax.swing.JInternalFrame {
         StringBuilder sb = new StringBuilder();
         sb.append("Quantidade de Veículos: \n");
         
-        for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
-            String chave = entrada.getKey();
-            Integer valor = entrada.getValue();
-            sb.append(String.format("%s = %d \n", chave, valor));
+        if (porTipo != null) {
+            for (Map.Entry<String, Integer> entrada : porTipo.entrySet()) {
+                String chave = entrada.getKey();
+                Integer valor = entrada.getValue();
+                sb.append(String.format("%s = %d \n", chave, valor));
+            }
         }
         
         sb.append(String.format("Total = %d ", total));
