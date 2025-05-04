@@ -355,6 +355,25 @@ public class ProdutoRepositorio implements Repositorio<Produto> {
     }
     
     /**
+     * Conta os tipos de produto cadastrados na base de dados.
+     * @return {@code int}
+     */
+    public int contarTipos() {
+        var sql = "SELECT COUNT(*) as quantidade FROM Tipo_Produto";
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            var rs = stmt.executeQuery();
+
+            return rs.getInt("quantidade");
+        } catch (SQLException e) {
+            String err = "Erro ao contar todos os tipos de produto: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
+    
+    /**
      * Verifica se a id to tipo de produto da existe ou não na base de dados.
      * @param id Id do tipo de produto.
      * @return {@code boolean} que diz se existe ou não na tabela.

@@ -207,6 +207,25 @@ public class VeiculoRepositorio implements Repositorio<Veiculo> {
             throw new RuntimeException(err);
         }
     }
+    
+    /**
+     * Conta os tipos de veículo cadastrados na base de dados.
+     * @return {@code int}
+     */
+    public int contarTipos() {
+        var sql = "SELECT COUNT(*) as quantidade FROM Tipo_Veiculo";
+        try (var bdConn = ConexaoBanco.pegarConnection()) {
+            var stmt = bdConn.prepareStatement(sql);
+            var rs = stmt.executeQuery();
+
+            return rs.getInt("quantidade");
+        } catch (SQLException e) {
+            String err = "Erro ao contar todos os tipos de veículo: " + e.getMessage();
+            log.error(err);
+
+            throw new RuntimeException(err);
+        }
+    }
 
     /**
      * Verifica se a id de veículo dada existe ou não na base de dados.
