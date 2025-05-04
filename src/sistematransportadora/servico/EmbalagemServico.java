@@ -89,8 +89,8 @@ public class EmbalagemServico {
      * @return {@code int}
      */
     public int buscarIdValidaParaTipo() {
-        var tiposCadastrados = embalagemRepositorio.contarPorTipo().size();
-        int i = tiposCadastrados;
+        var tiposCadastrados = embalagemRepositorio.contarTipos();
+        int i = tiposCadastrados + 1;
         
         while (true) {
             if (!embalagemRepositorio.existeTipoId(i))

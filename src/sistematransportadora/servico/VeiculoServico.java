@@ -86,8 +86,8 @@ public class VeiculoServico {
      * @return {@code int}
      */
     public int buscarIdValidaParaTipo() {
-        var tiposCadastrados = veiculoRepositorio.contarPorTipo().size();
-        int i = tiposCadastrados;
+        var tiposCadastrados = veiculoRepositorio.contarTipos();
+        int i = tiposCadastrados + 1;
         
         while (true) {
             if (!veiculoRepositorio.existeTipoId(i))

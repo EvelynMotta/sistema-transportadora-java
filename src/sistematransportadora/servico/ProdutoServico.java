@@ -86,8 +86,8 @@ public class ProdutoServico {
      * @return {@code int}
      */
     public int buscarIdValidaParaTipo() {
-        var tiposCadastrados = produtoRepositorio.contarPorTipo().size();
-        int i = tiposCadastrados;
+        var tiposCadastrados = produtoRepositorio.contarTipos();
+        int i = tiposCadastrados + 1;
         
         while (true) {
             if (!produtoRepositorio.existeTipoId(i))
