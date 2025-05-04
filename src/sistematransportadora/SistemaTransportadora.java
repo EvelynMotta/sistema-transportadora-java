@@ -10,6 +10,8 @@ import sistematransportadora.ui.TelaPrincipal;
  * @author pedro
  */
 public class SistemaTransportadora {
+    public static final String VERSAO_APP = "v1.0.0";
+    public static final int VERSAO_BANCO = 1;
     
     public static void main(String[] args) {
         prepararBanco();

@@ -80,6 +80,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnVEmbalagem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnResumo = new javax.swing.JMenuItem();
+        mnAjuda = new javax.swing.JMenu();
+        mnuSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JavaLog");
@@ -195,6 +197,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnExibir);
 
+        mnAjuda.setText("Ajuda");
+
+        mnuSobre.setText("Sobre");
+        mnuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSobreActionPerformed(evt);
+            }
+        });
+        mnAjuda.add(mnuSobre);
+
+        jMenuBar1.add(mnAjuda);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,6 +299,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mnuSairActionPerformed
 
+    private void mnuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSobreActionPerformed
+        var sobre = new TelaSobre();
+        dpTelinha.add(sobre);
+        sobre.setVisible(true);
+        sobre.setClosable(true);
+    }//GEN-LAST:event_mnuSobreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -328,6 +349,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JMenu mnAjuda;
     private javax.swing.JMenu mnExibir;
     private javax.swing.JMenuItem mnResumo;
     private javax.swing.JMenuItem mnVEmbalagem;
@@ -335,6 +357,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuEmbalagem;
     private javax.swing.JMenuItem mnuProduto;
     private javax.swing.JMenuItem mnuSair;
+    private javax.swing.JMenuItem mnuSobre;
     private javax.swing.JMenuItem mnuTipoEmbalagem;
     private javax.swing.JMenuItem mnuTipoProduto;
     private javax.swing.JMenuItem mnuTipoVeiculo;
