@@ -4,6 +4,8 @@
  */
 package sistematransportadora.ui;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sistematransportadora.modelo.VeiculoTipo;
@@ -29,6 +31,11 @@ public class CadastrarTipoVeiculo extends javax.swing.JInternalFrame {
         carregarTabela();
     }
 
+    public Image getIconImage() {
+        Image img = new ImageIcon(getClass().getResource("/img/logo.png")).getImage();
+        return img;
+    }
+    
     private void carregarTabela() {
         var tiposProdutos = veiculoRepositorio.buscarTipos();
         
@@ -87,6 +94,7 @@ public class CadastrarTipoVeiculo extends javax.swing.JInternalFrame {
         btnApagar = new javax.swing.JButton();
 
         cadastroDialogo.setTitle("Cadastro");
+        cadastroDialogo.setIconImage(getIconImage());
         cadastroDialogo.setMinimumSize(new java.awt.Dimension(195, 165));
         cadastroDialogo.setModal(true);
         cadastroDialogo.setSize(new java.awt.Dimension(195, 165));

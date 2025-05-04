@@ -5,10 +5,16 @@
     <Container class="javax.swing.JDialog" name="cadastroDialogo">
       <Properties>
         <Property name="title" type="java.lang.String" value="Cadastro"/>
+        <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getIconImage()" type="code"/>
+        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[220, 165]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[220, 148]"/>
+        </Property>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[220, 165]"/>
         </Property>

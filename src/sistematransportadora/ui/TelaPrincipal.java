@@ -4,6 +4,10 @@
  */
 package sistematransportadora.ui;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author evely
@@ -17,6 +21,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
     }
     
+    @Override
+    public Image getIconImage() {
+        Image img = new ImageIcon(getClass().getResource("/img/logo.png")).getImage();
+        return img;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +36,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dpTelinha = new javax.swing.JDesktopPane();
+        dpTelinha = new javax.swing.JDesktopPane() {
+            private Image backgroundImg;
+            {
+                backgroundImg = new ImageIcon(getClass().getResource("/img/background.png")).getImage();
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                int imgWidth = backgroundImg.getWidth(this);
+                int imgHeight = backgroundImg.getHeight(this);
+                int paneWidth = getWidth();
+                int paneHeight = getHeight();
+
+                double scaleX = (double) paneWidth / imgWidth;
+                double scaleY = (double) paneHeight / imgHeight;
+                double scale = Math.max(scaleX, scaleY);
+
+                int newWidth = (int) (imgWidth * scale);
+                int newHeight = (int) (imgHeight * scale);
+                int x = (paneWidth - newWidth) / 2;
+                int y = (paneHeight - newHeight) / 2;
+
+                g.drawImage(backgroundImg, x, y, newWidth, newHeight, this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuVeiculo = new javax.swing.JMenuItem();
@@ -47,6 +83,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JavaLog");
+        setIconImage(getIconImage());
 
         javax.swing.GroupLayout dpTelinhaLayout = new javax.swing.GroupLayout(dpTelinha);
         dpTelinha.setLayout(dpTelinhaLayout);
