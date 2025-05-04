@@ -2,6 +2,7 @@
 /build/
 /nbproject/.idea/
 /nbproject/private/
+/dist/
 
 # IntelliJ
 /out/

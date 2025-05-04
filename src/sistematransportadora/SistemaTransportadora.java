@@ -10,7 +10,7 @@ import sistematransportadora.ui.TelaPrincipal;
  * @author pedro
  */
 public class SistemaTransportadora {
-
+    
     public static void main(String[] args) {
         prepararBanco();
         TelaPrincipal.main(null);
@@ -24,13 +24,13 @@ public class SistemaTransportadora {
         var existiaPasta = !pastaSistema.mkdirs();
         if (!existiaPasta || !bd.exists()) {
             try (var bdConn = ConexaoBanco.pegarConnection()) {
-                File arquivoSql = new File("src/scripts/schema.sql");
+                InputStream arquivoSql = SistemaTransportadora.class
+                        .getResourceAsStream("/scripts/schema.sql");
                 var stmt = bdConn.createStatement();
 
-                if (arquivoSql.exists()) {
+                if (arquivoSql != null) {
                     executarArquivoSQL(arquivoSql, stmt);
                 } else {
-                    System.out.println(arquivoSql.getAbsolutePath());
                     throw new FileNotFoundException("Não foi possível encontra a schema necessária.");
                 }
             } catch (SQLException | FileNotFoundException e) {
@@ -40,8 +40,8 @@ public class SistemaTransportadora {
         }
     }
 
-    private static void executarArquivoSQL(File file, Statement stmt) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+    private static void executarArquivoSQL(InputStream file, Statement stmt) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file))) {
             String linha;
             StringBuilder sql = new StringBuilder();
 
