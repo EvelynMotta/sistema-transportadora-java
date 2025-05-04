@@ -16,7 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +32,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuVeiculo = new javax.swing.JMenuItem();
         mnuProduto = new javax.swing.JMenuItem();
         mnuEmbalagem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mnuTipoVeiculo = new javax.swing.JMenuItem();
+        mnuTipoProduto = new javax.swing.JMenuItem();
+        mnuTipoEmbalagem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        mnuSair = new javax.swing.JMenuItem();
         mnExibir = new javax.swing.JMenu();
         mnuVVeiculo = new javax.swing.JMenuItem();
         mnVProduto = new javax.swing.JMenuItem();
@@ -78,6 +84,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mnuEmbalagem);
+        jMenu1.add(jSeparator2);
+
+        mnuTipoVeiculo.setText("Tipo de Veículo");
+        mnuTipoVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTipoVeiculoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuTipoVeiculo);
+
+        mnuTipoProduto.setText("Tipo de Produto");
+        mnuTipoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTipoProdutoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuTipoProduto);
+
+        mnuTipoEmbalagem.setText("Tipo de Embalagem");
+        mnuTipoEmbalagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTipoEmbalagemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuTipoEmbalagem);
+        jMenu1.add(jSeparator3);
+
+        mnuSair.setText("Sair");
+        mnuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuSair);
 
         jMenuBar1.add(jMenu1);
 
@@ -183,6 +223,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         visualizacaoEmbalagem.setClosable(true);
     }//GEN-LAST:event_mnVEmbalagemActionPerformed
 
+    private void mnuTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTipoProdutoActionPerformed
+        var cadastroTipoProduto = new CadastrarTipoProduto();
+        dpTelinha.add(cadastroTipoProduto);
+        cadastroTipoProduto.setVisible(true);
+        cadastroTipoProduto.setClosable(true);
+    }//GEN-LAST:event_mnuTipoProdutoActionPerformed
+
+    private void mnuTipoVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTipoVeiculoActionPerformed
+        var cadastroTipoVeiculo = new CadastrarTipoVeiculo();
+        dpTelinha.add(cadastroTipoVeiculo);
+        cadastroTipoVeiculo.setVisible(true);
+        cadastroTipoVeiculo.setClosable(true);
+    }//GEN-LAST:event_mnuTipoVeiculoActionPerformed
+
+    private void mnuTipoEmbalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTipoEmbalagemActionPerformed
+        var cadastroTipoEmbalagem = new CadastrarTipoEmbalagem();
+        dpTelinha.add(cadastroTipoEmbalagem);
+        cadastroTipoEmbalagem.setVisible(true);
+        cadastroTipoEmbalagem.setClosable(true);
+    }//GEN-LAST:event_mnuTipoEmbalagemActionPerformed
+
+    private void mnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mnuSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,12 +289,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenu mnExibir;
     private javax.swing.JMenuItem mnResumo;
     private javax.swing.JMenuItem mnVEmbalagem;
     private javax.swing.JMenuItem mnVProduto;
     private javax.swing.JMenuItem mnuEmbalagem;
     private javax.swing.JMenuItem mnuProduto;
+    private javax.swing.JMenuItem mnuSair;
+    private javax.swing.JMenuItem mnuTipoEmbalagem;
+    private javax.swing.JMenuItem mnuTipoProduto;
+    private javax.swing.JMenuItem mnuTipoVeiculo;
     private javax.swing.JMenuItem mnuVVeiculo;
     private javax.swing.JMenuItem mnuVeiculo;
     // End of variables declaration//GEN-END:variables
