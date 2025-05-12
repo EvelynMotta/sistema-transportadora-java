@@ -8,7 +8,7 @@
     <img alt="Github License" 
     src="https://img.shields.io/github/license/pedroanuda/sistema-transportadora-java?label=Licen%C3%A7a">
     <img alt="Status"
-    src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-purple">
+    src="https://img.shields.io/badge/Status-Finalizado-purple">
 </p>
 
 <p align="center" style="font-size: 1rem">
